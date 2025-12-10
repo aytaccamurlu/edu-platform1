@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function UserDashboard() {
   const [courses, setCourses] = useState([]);
   const user = JSON.parse(localStorage.getItem("user"));
-
+  const navigate = useNavigate();
   useEffect(() => {
     axios.get("http://localhost:4000/courses").then(res => setCourses(res.data));
   }, []);
@@ -32,7 +33,20 @@ export default function UserDashboard() {
     <div>
       <h2>Hoş geldin {user.name}</h2>
       <Link to="/user/my-courses">Satın Aldığım Eğitimler</Link>
-      <button onClick={requestLiveLesson}>Canlı Ders Talebi</button>
+     <button
+        onClick={() => navigate("/live-request")}
+        style={{
+          padding: "10px 20px",
+          backgroundColor: "#667eea",
+          color: "#fff",
+          border: "none",
+          borderRadius: "6px",
+          cursor: "pointer",
+          marginTop: "20px"
+        }}
+      >
+        Canlı Ders Talebi
+      </button>
 
       <h3>Tüm Eğitimler</h3>
       {courses.map(c => (

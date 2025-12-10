@@ -80,6 +80,12 @@
       "userId": "1",
       "courseId": "1",
       "status": "paid"
+    },
+    {
+      "id": "0440",
+      "userId": "1",
+      "courseId": "1",
+      "status": "paid"
     }
   ],
   "liveRequests": [
@@ -97,13 +103,46 @@
       "id": "3368",
       "userId": "1",
       "status": "pending"
+    },
+    {
+      "id": "ba6d",
+      "userId": "1",
+      "status": "pending"
+    },
+    {
+      "id": "8757",
+      "userId": "1",
+      "status": "pending"
+    },
+    {
+      "id": "a5b6",
+      "userId": "1",
+      "status": "pending"
+    },
+    {
+      "id": "5804",
+      "userId": "1",
+      "status": "pending"
+    },
+    {
+      "id": "1e82",
+      "userId": "1",
+      "status": "pending"
+    },
+    {
+      "id": "caad",
+      "userId": "1",
+      "courseId": 1,
+      "status": "assigned",
+      "date": "2025-12-10T19:19:18.081Z",
+      "instructorId": "2"
     }
   ],
   "instructors": [
     {
       "id": "2",
       "name": "Ayşe",
-      "isAvailable": true
+      "isAvailable": false
     }
   ]
 }
