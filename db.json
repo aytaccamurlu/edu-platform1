@@ -1,0 +1,16 @@
+{
+  "users": [
+    { "id": 1, "name": "Ali", "role": "user", "email": "ali@test.com", "password": "123" },
+    { "id": 2, "name": "Ayşe", "role": "instructor", "email": "ayse@test.com", "password": "123" },
+    { "id": 3, "name": "Admin", "role": "admin", "email": "admin@test.com", "password": "123" }
+  ],
+  "courses": [
+    { "id": 1, "title": "React 101", "desc": "React giriş eğitimi", "instructor": "Ayşe", "price": 199 },
+    { "id": 2, "title": "Node.js Başlangıç", "desc": "Backend temelleri", "instructor": "Ayşe", "price": 249 }
+  ],
+  "purchases": [],
+  "liveRequests": [],
+  "instructors": [
+    { "id": 2, "name": "Ayşe", "isAvailable": true }
+  ]
+}
