@@ -1,66 +1,33 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function Courses() {
   const [courses, setCourses] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  const user = JSON.parse(localStorage.getItem("user"));
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const loadCourses = async () => {
+    async function load() {
       const res = await axios.get("http://localhost:4000/courses");
       setCourses(res.data);
-      setLoading(false);
-    };
-
-    loadCourses();
+    }
+    load();
   }, []);
 
-  const handleBuy = async (course) => {
-    if (!user) {
-      alert("Satın almak için giriş yapmalısınız!");
-      return;
-    }
-
-    // Simüle ödeme (gerçek ödeme yok)
-    const paymentSuccess = true;
-
-    if (!paymentSuccess) {
-      alert("Ödeme başarısız!");
-      return;
-    }
-
-    // Purchase tablosuna kayıt ekle
-    await axios.post("http://localhost:4000/purchases", {
-      userId: user.id,
-      courseId: course.id,
-      date: new Date().toISOString()
-    });
-
-    alert("Satın alma başarılı!");
+  const selectCourse = (course) => {
+    localStorage.setItem("selectedCourse", JSON.stringify(course));
+    navigate("/purchase");
   };
 
-  if (loading) return <p>Yükleniyor...</p>;
-
   return (
-    <div style={{ padding: 40 }}>
-      <h2>Kurs Listesi</h2>
-
-      {courses.map((course) => (
-        <div key={course.id} style={{ 
-          border: "1px solid #ccc", 
-          padding: 20, 
-          marginBottom: 15 
-        }}>
-          <h3>{course.title}</h3>
-          <p>{course.description}</p>
-          <p><b>Eğitmen:</b> {course.instructor}</p>
-          <p><b>Fiyat:</b> ${course.price}</p>
-
-          <button onClick={() => handleBuy(course)}>
-            Satın Al
-          </button>
+    <div style={{ padding: 20 }}>
+      <h2>Kurslar</h2>
+      {courses.map(c => (
+        <div key={c.id} style={{border:"1px solid #ccc", margin:"10px 0", padding:"10px"}}>
+          <h3>{c.title}</h3>
+          <p>{c.desc}</p>
+          <p>Fiyat: ₺{c.price}</p>
+          <button onClick={()=>selectCourse(c)}>Satın Al</button>
         </div>
       ))}
     </div>

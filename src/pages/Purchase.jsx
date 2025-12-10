@@ -18,6 +18,7 @@ export default function Purchase() {
 
   const handlePayment = async () => {
     const user = JSON.parse(localStorage.getItem("user"));
+    if (!user) { alert("Giriş yapın!"); navigate("/login"); return; }
 
     const purchaseData = {
       userId: user.id,
@@ -27,7 +28,6 @@ export default function Purchase() {
       date: new Date().toISOString()
     };
 
-    // JSON SERVER POST
     await axios.post("http://localhost:4000/purchases", purchaseData);
 
     alert("Ödeme başarılı! Kurs hesabınıza tanımlandı.");
@@ -42,10 +42,7 @@ export default function Purchase() {
       <h2>Ödeme Sayfası</h2>
       <h3>{course.title}</h3>
       <p>Fiyat: ₺{course.price}</p>
-
-      <button onClick={handlePayment} style={{ marginTop: 20 }}>
-        Ödemeyi Tamamla
-      </button>
+      <button onClick={handlePayment} style={{ marginTop: 20 }}>Ödemeyi Tamamla</button>
     </div>
   );
 }

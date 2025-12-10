@@ -7,25 +7,36 @@ export default function MyCourses() {
 
   useEffect(() => {
     async function load() {
-      const purchases = await axios.get("http://localhost:4000/purchases");
-      const userPurchases = purchases.data.filter(p => p.userId === user.id);
+      if (!user) return;
 
-      const allCourses = await axios.get("http://localhost:4000/courses");
+      const purchasesRes = await axios.get(`http://localhost:4000/purchases?userId=${user.id}`);
+      const purchases = purchasesRes.data;
 
-      const result = allCourses.data.filter(c =>
-        userPurchases.some(p => p.courseId === c.id)
+      const coursesRes = await axios.get("http://localhost:4000/courses");
+      const allCourses = coursesRes.data;
+
+      const myCourses = allCourses.filter(c =>
+        purchases.some(p => p.courseId === c.id)
       );
 
-      setMyCourses(result);
+      setMyCourses(myCourses);
     }
+
     load();
-  }, []);
+  }, [user]);
+
+  if (!user) return <p>Giriş yapın</p>;
 
   return (
-    <div>
+    <div style={{ padding: "20px" }}>
       <h2>Satın Aldığım Eğitimler</h2>
+      {myCourses.length === 0 && <p>Henüz satın alınan kurs yok</p>}
       {myCourses.map(c => (
-        <p key={c.id}>{c.title}</p>
+        <div key={c.id} style={{padding:"10px", margin:"10px 0", border:"1px solid #ccc", borderRadius:"6px"}}>
+          <h3>{c.title}</h3>
+          <p>{c.desc}</p>
+          <p>Fiyat: {c.price}₺</p>
+        </div>
       ))}
     </div>
   );

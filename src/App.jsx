@@ -42,7 +42,7 @@ function App() {
         />
 
         <Route
-          path="/my-courses"
+          path="/user/my-courses"
           element={
             <ProtectedRoute role="user">
               <MyCourses />
