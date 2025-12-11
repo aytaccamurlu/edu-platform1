@@ -1,52 +1,77 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { Box, Button, TextField, Typography, Alert } from "@mui/material";
 
 export default function LiveRequest() {
   const [courseId, setCourseId] = useState("");
+  const [message, setMessage] = useState("");
   const user = JSON.parse(localStorage.getItem("user"));
 
   const handleRequest = async () => {
-    if (!user) return alert("Giriş yapın");
-
-    // 1. Kullanıcı talebi kaydedilir
-    const request = await axios.post("http://localhost:4000/liveRequests", {
-      userId: user.id,
-      courseId: parseInt(courseId),
-      status: "pending",
-      date: new Date().toISOString()
-    });
-
-    // 2. Eğitmen atama
-    const instructorsRes = await axios.get("http://localhost:4000/instructors");
-    const availableInstructor = instructorsRes.data.find(inst => inst.isAvailable);
-
-    if (!availableInstructor) {
-      alert("Şu anda müsait eğitmen yok");
+    if (!user) {
+      setMessage("Giriş yapın");
       return;
     }
 
-    // Eğitmen atandı
-    await axios.patch(`http://localhost:4000/instructors/${availableInstructor.id}`, { isAvailable: false });
+    try {
+      // 1. Kullanıcı talebi kaydedilir
+      const request = await axios.post("http://localhost:4000/liveRequests", {
+        userId: user.id,
+        courseId: parseInt(courseId),
+        status: "pending",
+        date: new Date().toISOString()
+      });
 
-    // Talebi güncelle
-    await axios.patch(`http://localhost:4000/liveRequests/${request.data.id}`, {
-      instructorId: availableInstructor.id,
-      status: "assigned"
-    });
+      // 2. Eğitmen atama
+      const instructorsRes = await axios.get("http://localhost:4000/instructors");
+      const availableInstructor = instructorsRes.data.find(inst => inst.isAvailable);
 
-    alert(`Eğitmen atandı: ${availableInstructor.name}`);
+      if (!availableInstructor) {
+        setMessage("Şu anda müsait eğitmen yok");
+        return;
+      }
+
+      // Eğitmen atandı
+      await axios.patch(`http://localhost:4000/instructors/${availableInstructor.id}`, { isAvailable: true });
+
+      // Talebi güncelle
+      await axios.patch(`http://localhost:4000/liveRequests/${request.data.id}`, {
+        instructorId: availableInstructor.id,
+        status: "assigned"
+      });
+
+      setMessage(`Eğitmen atandı: ${availableInstructor.name}`);
+      setCourseId(""); // inputu temizle
+    } catch (err) {
+      setMessage("Talep gönderilirken hata oluştu");
+      console.error(err);
+    }
   };
 
   return (
-    <div style={{ padding: 20 }}>
-      <h2>Canlı Ders Talebi Oluştur</h2>
-      <input
+    <Box p={3} maxWidth={400} mx="auto">
+      <Typography variant="h5" mb={3}>
+        Canlı Ders Talebi Oluştur
+      </Typography>
+
+      {message && (
+        <Alert severity={message.includes("hata") || message.includes("Giriş") ? "error" : "success"} sx={{ mb: 2 }}>
+          {message}
+        </Alert>
+      )}
+
+      <TextField
+        label="Kurs ID"
         type="number"
-        placeholder="Kurs ID"
+        fullWidth
         value={courseId}
         onChange={(e) => setCourseId(e.target.value)}
+        sx={{ mb: 2 }}
       />
-      <button onClick={handleRequest} style={{ marginLeft: 10 }}>Talep Gönder</button>
-    </div>
+
+      <Button variant="contained" color="primary" fullWidth onClick={handleRequest}>
+        Talep Gönder
+      </Button>
+    </Box>
   );
 }

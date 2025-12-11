@@ -86,6 +86,12 @@
       "userId": "1",
       "courseId": "1",
       "status": "paid"
+    },
+    {
+      "id": "7038",
+      "userId": "1",
+      "courseId": "2",
+      "status": "paid"
     }
   ],
   "liveRequests": [
@@ -225,6 +231,46 @@
       "status": "assigned",
       "date": "2025-12-10T19:27:14.400Z",
       "instructorId": "2"
+    },
+    {
+      "id": "ab36",
+      "userId": "1",
+      "courseId": 1,
+      "status": "assigned",
+      "date": "2025-12-11T06:32:35.802Z",
+      "instructorId": "1"
+    },
+    {
+      "id": "9fe3",
+      "userId": "1",
+      "courseId": 2,
+      "status": "assigned",
+      "date": "2025-12-11T06:32:41.523Z",
+      "instructorId": "1"
+    },
+    {
+      "id": "da28",
+      "userId": "1",
+      "courseId": null,
+      "status": "assigned",
+      "date": "2025-12-11T06:32:44.179Z",
+      "instructorId": "1"
+    },
+    {
+      "id": "f1fc",
+      "userId": "1",
+      "courseId": 1,
+      "status": "assigned",
+      "date": "2025-12-11T06:32:46.532Z",
+      "instructorId": "1"
+    },
+    {
+      "id": "2821",
+      "userId": "1",
+      "courseId": 3,
+      "status": "assigned",
+      "date": "2025-12-11T06:32:49.265Z",
+      "instructorId": "1"
     }
   ],
   "instructors": [
