@@ -24,19 +24,45 @@
   ],
   "courses": [
     {
-      "id": "1",
-      "title": "React 101",
-      "desc": "React giriş eğitimi",
-      "instructor": "Ayşe",
-      "price": 199
-    },
-    {
-      "id": "2",
-      "title": "Node.js Başlangıç",
-      "desc": "Backend temelleri",
-      "instructor": "Ayşe",
-      "price": 249
-    }
+    "id": "1",
+    "title": "React 101",
+    "desc": "React giriş eğitimi",
+    "instructor": "Ayşe",
+    "price": 199,
+    "duration": 12,
+    "contents": [
+      { "title": "Giriş", "detail": "React nedir, kurulum" },
+      { "title": "Component Yapısı", "detail": "Fonksiyonel ve Class Componentler" },
+      { "title": "State ve Props", "detail": "State yönetimi ve props kullanımı" }
+    ]
+  },
+  {
+    "id": "2",
+    "title": "Node.js Başlangıç",
+    "desc": "Backend temelleri",
+    "instructor": "Ayşe",
+    "price": 249,
+    "duration": 15,
+    "contents": [
+      { "title": "Giriş", "detail": "Node.js nedir, kurulum" },
+      { "title": "Modüller", "detail": "require ve import kullanımı" },
+      { "title": "Express", "detail": "Route ve middleware oluşturma" }
+    ]
+  },
+  {
+    "id": "79b4",
+    "title": "SQL",
+    "desc": "Veritabanı Yönetimi",
+    "price": 300,
+    "duration": 10,
+    "contents": [
+      { "title": "Giriş", "detail": "SQL nedir ve temel kavramlar" },
+      { "title": "SELECT Sorguları", "detail": "Veri çekme ve filtreleme" },
+      { "title": "JOIN İşlemleri", "detail": "Tablolar arası ilişki kurma" },
+      { "title": "Veri Güncelleme", "detail": "UPDATE ve DELETE kullanımı" },
+      { "title": "İleri Konular", "detail": "Index ve performans optimizasyonu" }
+    ]
+  }
   ],
   "purchases": [
     {
@@ -91,6 +117,12 @@
       "id": "7038",
       "userId": "1",
       "courseId": "2",
+      "status": "paid"
+    },
+    {
+      "id": "1e61",
+      "userId": "1",
+      "courseId": "79b4",
       "status": "paid"
     }
   ],
@@ -289,5 +321,7 @@
       "name": "Adnan",
       "isAvailable": true
     }
+   
   ]
+  
 }

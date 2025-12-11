@@ -8,6 +8,7 @@ import Courses from "./pages/Courses";
 import LiveRequest from "./pages/LiveRequest";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Purchase from "./pages/Purchase";
+import CourseDetail from "./pages/CourseDetail";
 function App() {
   return (
     <BrowserRouter>
@@ -49,7 +50,7 @@ function App() {
             </ProtectedRoute>
           }
         />
-
+<Route path="/user/course/:id" element={<CourseDetail />} />
       <Route 
   path="/courses"
   element={

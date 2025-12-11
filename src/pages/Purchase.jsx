@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+import Header from "../components/Header";
 export default function Purchase() {
   const [course, setCourse] = useState(null);
   const navigate = useNavigate();
@@ -39,6 +39,7 @@ export default function Purchase() {
 
   return (
     <div style={{ padding: 40 }}>
+      <Header title="Ödeme Sayfası" />
       <h2>Ödeme Sayfası</h2>
       <h3>{course.title}</h3>
       <p>Fiyat: ₺{course.price}</p>

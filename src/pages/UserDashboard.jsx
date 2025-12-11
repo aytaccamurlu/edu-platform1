@@ -10,7 +10,7 @@ import {
   Typography,
   Grid
 } from "@mui/material";
-
+import Header from "../components/Header";
 export default function UserDashboard() {
   const [courses, setCourses] = useState([]);
   const user = JSON.parse(localStorage.getItem("user"));
@@ -32,6 +32,7 @@ export default function UserDashboard() {
   return (
     <Box p={3}>
       {/* Başlık ve Butonlar */}
+      <Header title=" Ana Sayfa" />
       <Box display="flex" flexDirection={{ xs: "column", sm: "row" }} alignItems="center" justifyContent="space-between" mb={3}>
         <Typography variant="h4" mb={{ xs: 2, sm: 0 }}>
           Hoş geldin, {user.name} 👋

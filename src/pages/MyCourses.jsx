@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import {
   Box,
   Card,
@@ -8,10 +9,12 @@ import {
   Grid,
   Button
 } from "@mui/material";
+import Header from "../components/Header";
 
 export default function MyCourses() {
   const [myCourses, setMyCourses] = useState([]);
   const user = JSON.parse(localStorage.getItem("user"));
+  const navigate = useNavigate(); // yönlendirme için
 
   useEffect(() => {
     async function load() {
@@ -35,11 +38,14 @@ export default function MyCourses() {
 
   if (!user) return <Typography variant="h6" color="error" p={3}>Giriş yapın</Typography>;
 
+  const openCourse = (courseId) => {
+    // Örn: /user/course/101 → kurs detay veya video oynatma sayfası
+    navigate(`/user/course/${courseId}`);
+  };
+
   return (
     <Box p={3}>
-      <Typography variant="h4" mb={3}>
-        Satın Aldığım Eğitimler
-      </Typography>
+   <Header title="Satın Aldığım Eğitimler" />
 
       {myCourses.length === 0 && (
         <Typography variant="body1">Henüz satın alınan kurs yok</Typography>
@@ -73,7 +79,12 @@ export default function MyCourses() {
                 </Typography>
               </CardContent>
               <Box p={2}>
-                <Button variant="contained" fullWidth color="primary">
+                <Button
+                  variant="contained"
+                  fullWidth
+                  color="primary"
+                  onClick={() => openCourse(course.id)}
+                >
                   Eğitimi Aç
                 </Button>
               </Box>
