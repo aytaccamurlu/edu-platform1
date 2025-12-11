@@ -6,7 +6,7 @@ export default function Header({ title }) {
 
   const handleLogout = () => {
     localStorage.removeItem("user"); // kullanıcıyı çıkış yap
-    navigate("/login"); // login sayfasına yönlendir
+    navigate("/"); // login sayfasına yönlendir
   };
 
   return (
