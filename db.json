@@ -163,37 +163,37 @@
     {
       "id": "4854",
       "userId": "1",
-      "status": "pending"
+      "status": "completed"
     },
     {
       "id": "5c69",
       "userId": "1",
-      "status": "pending"
+      "status": "completed"
     },
     {
       "id": "3368",
       "userId": "1",
-      "status": "pending"
+      "status": "completed"
     },
     {
       "id": "ba6d",
       "userId": "1",
-      "status": "pending"
+      "status": "completed"
     },
     {
       "id": "8757",
       "userId": "1",
-      "status": "pending"
+      "status": "completed"
     },
     {
       "id": "a5b6",
       "userId": "1",
-      "status": "pending"
+      "status": "completed"
     },
     {
       "id": "5804",
       "userId": "1",
-      "status": "pending"
+      "status": "completed"
     },
     {
       "id": "1e82",
@@ -278,7 +278,7 @@
       "id": "dcb2",
       "userId": "1",
       "courseId": 1,
-      "status": "pending",
+      "status": "completed",
       "date": "2025-12-10T19:26:14.984Z"
     },
     {
